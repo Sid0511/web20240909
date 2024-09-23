@@ -1,0 +1,36 @@
+<html>
+<head>
+ <title>CSS簡介</title>
+<meta charset="UTF-8">
+<!-- HTML註解 -->
+<style>
+ /* css註解*/
+/*CSS 基本語法
+  選擇器{屬性:設定；}
+
+
+*/
+/*選擇器種類
+ HTMI_tag{ }
+  #id{   }
+ .class{   }
+*/
+P{ margin: 0;}
+div{margin-top: 20px;margin-bottom: 20px;}
+span{background-color: hsl(56, 100%, 72%);}
+#sid01{background-color: aqua;}
+#sid02{display: inline-block; background-color: rgb(64, 226, 43); width: 200px;height: 100px;}
+#sid03{display: block}
+.cs01{color: rgb(42, 221, 221);}
+</style>
+</head>
+<body>
+    <p>段落</p>
+   <div>區塊元素</div>
+    <span id="sid02">行內區塊元素</span>
+    <span id="sid01" class="cs01">行內元素</span>
+    <span id="sid03" class="cs01 cs02">區塊元素</span>
+
+
+</body>
+</html>
