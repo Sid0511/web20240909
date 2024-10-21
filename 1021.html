@@ -1,0 +1,44 @@
+<html>
+<head>
+  <title>JavaScript(JS)</title>
+  <meta charset="UTF-8">
+  <style>/*CSS可跨行*/</style>
+  <script>
+   //JS註解單行
+  /*JS多行*/
+    function myfuncion() {
+    /*ans=prompt("你誰")  
+    console.log(ans)
+    if(ans==null){
+       console.log("我在你後面")
+        
+    } else{
+        console.log("不錯"+ans)
+    }*/
+    ans=prompt("懂吧?");
+    console.log(typeof(ans));
+   if(ans==null){ console.log("取消");} else{console.log("輸入"+ans);}
+     }
+    function add(){
+    var n1=document.getElementById("n1").value;
+    var n2=document.getElementById("n2").value;
+    var ans=parseInt(n1)+parseInt(n2);
+    document.getElementById("ans").value=ans
+    if(ans<60){document.getElementById("ans").style.color="blue"} else{document.getElementById("ans").style.color="red"}
+    document.getElementById("ans").style.backgroundColor="green"
+
+    }
+
+  </script>
+
+
+
+
+
+
+</head>
+<body>
+  <input type="number" id="n1">+<input type="number" id="n2"><button onclick="add();">=</button>=<input type="number" id="ans">
+
+</body>
+</html>
