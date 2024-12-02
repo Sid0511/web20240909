@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>1125</title>
+<title>1125-1202</title>
 <meta charset="UTF-8">
 <style>
 #worldmap{
@@ -25,30 +25,43 @@
 </style>
 <script>
     var pos={x:0,y:0,};
+    var dir={"AarowUp":0,"AarowDown":0,"AarowLeft":0,"AarowRight":0,};
     function get(id){
         return document.getElementById(id);
     }
     function mykeydown(){
         event.preventDefault();
-        if(event.key=="Arrowup"){
-            get("role").style.backgroundPositionY+"-216px";
-            pos.y-=5;
-        }else if(event.key=="ArrowDown"){
-            get("role").style.backgroundPositionY+"0px";
-            pos.y+=5;
-        }else if(event.key=="ArrowLert"){
-            get("role").style.backgroundPositionY+"-72px";
-            pos.x-=5;
-        }else if(event.key=="ArrowRight"){
-            get("role").style.backgroundPositionY+"-144px";
-            pos.x+=5;
+        var bgPY={"Arrowup":"-216px","ArrowDown":"0px","ArrowLert":"-72px","ArrowRight":"-144px",};  
+        get("role").style.backgroundPositionY=bgPY[event.key];
+        dir[event.key]=1;
+        get("role").style.animationPlayState="running"
+    }
+    function mykeyup(){
+        event.preventDefault();
+        dir[event.key]=0;
+        get("role").style.animationPlayState="paused"
+    }
+    function walk(){
+        if(dir["Arrowup"]==1){
+            pos.y--;
+        } else if(dir["ArrowDown"]==1){
+            pos.y++;
+        }else if(dir["ArrowLeft"]==1){
+            pos.x--;
+        }else if(dir["ArrowLight"]==1){
+            pos.x++;
         }
         get("role").style.left=pos.x+"px";
         get("role").style.top=pos.y+"px";
     }
+    function gameInit(){
+        pos={x:376,y:364};
+        dir={"Arrowup":"-216px","ArrowDown":"0px","ArrowLert":"-72px","ArrowRight":"-144px",}
+        setInterval(walk,100);
+    }
 </script>
 </head>
-<body onkeydown="mykeydown();">
+<body onkeydown="mykeydown();" onkeyup="mykeyup()">
  <div id="worldmap">
     <div id="role"></div>
  </div>
