@@ -3,36 +3,70 @@
     <title>我還在想名字</title>
     <meta charset="UTF-8">
     <style>
+        
         #worldmap{
      background: url("bg.jpg");
      background-size: 100% 100%;
-     width: 1920px;
-     height: 1076px;
+     width: 1632px;
+     height: 900px;
      position: relative;
-     }
+     }   
         @keyframes role1walk{
           0%{background-position-x:0px ;}
          100%{background-position-x:-144px ;}
         }
-        #role1{
+        #role{
             background-image:url("sprite1.png");
             width: 48px;height: 72px;
-            animation: role1walk 1s steps(3) infinite ;
-            background-position-y:-432px ;
+            animation: role1walk 1s steps(3) infinite;
+            background-position-y:-144px ;
         }
-
+        #si{
+            background-image:url("13.jng");
+            width: 16px;height: 12px;
+        }
     </style>
     <script>
        function get(id){
         return document.getElementById(id)
     }
+    var pos={x:0,y:0};
+    var dir={"AarowLeft":0,"AarowRight":0,};
+    function get(id){
+        return document.getElementById(id);
+    }
+    function mykeydown(){
+        event.preventDefault();
+        var bgPY={"ArrowLert":"-72px","ArrowRight":"-144px",};  
+        get("role").style.backgroundPositionY=bgPY[event.key];
+        dir[event.key]=1;
+        get("role").style.animationPlayState="running"
+    }
+    function mykeyup(){
+        event.preventDefault();
+        dir[event.key]=0;
+        get("role").style.animationPlayState="paused"
+    }
+    function walk(){
+        if(dir["ArrowLeft"]==1){
+            pos.x--;
+        } else if(dir["ArrowLight"]==1){
+            pos.x++;
+        }
+        get("role").style.left=pos.x+"px";
+    }
+    function gameInit(){
+        pos={x:376,y:364};
+        dir={"ArrowLert":"-72px","ArrowRight":"-144px",}
+        setInterval(walk,100);
+    }
     
     </script>
 </head>
-<body>
-    <div id="worldmap">
-        <div id="role1"></div>
-    </div>
-   
-</body>
+<body onkeydown="mykeydown();" onkeyup="mykeyup()">
+        <div id="worldmap">
+           <div id="role"></div>
+        </div>
+        <div id="si"></div>
+ </body>
 </html>
