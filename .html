@@ -20,53 +20,52 @@
             width: 48px;height: 72px;
             animation: role1walk 1s steps(3) infinite;
             background-position-y:-144px ;
+            position:absolute;top: 800px;
+           
         }
         #si{
-            background-image:url("13.jng");
-            width: 16px;height: 12px;
+            width: 80px;height: 60px;
+            background-image: url("13.png");
+            position:absolute;top: 800px;left: 1532px;
+            background-size: 100%;
+        }
+        #sid{
+            width: 56px;height: 79px;
+            background-image: url("14.png");
+            position:absolute;top: 800px;left: 1132px;
+            background-size: 100%;
         }
     </style>
     <script>
+        t1=0
+        
        function get(id){
         return document.getElementById(id)
     }
-    var pos={x:0,y:0};
-    var dir={"AarowLeft":0,"AarowRight":0,};
-    function get(id){
-        return document.getElementById(id);
-    }
-    function mykeydown(){
-        event.preventDefault();
-        var bgPY={"ArrowLert":"-72px","ArrowRight":"-144px",};  
-        get("role").style.backgroundPositionY=bgPY[event.key];
-        dir[event.key]=1;
-        get("role").style.animationPlayState="running"
-    }
-    function mykeyup(){
-        event.preventDefault();
-        dir[event.key]=0;
-        get("role").style.animationPlayState="paused"
-    }
-    function walk(){
-        if(dir["ArrowLeft"]==1){
-            pos.x--;
-        } else if(dir["ArrowLight"]==1){
-            pos.x++;
+    function setInterval(){
+        if(t1==0){
+            t1=setInterval(30000);
+            setTimeout(stopInterval,3000);
         }
+     }
+     function stopInterval(){
+        clearInterval(1);
+       t1=0;
+     }
+     function walk(){
+        dir={"px":72}
         get("role").style.left=pos.x+"px";
-    }
-    function gameInit(){
-        pos={x:376,y:364};
-        dir={"ArrowLert":"-72px","ArrowRight":"-144px",}
-        setInterval(walk,100);
-    }
+     }
+    
     
     </script>
 </head>
-<body onkeydown="mykeydown();" onkeyup="mykeyup()">
+<body>
         <div id="worldmap">
-           <div id="role"></div>
+           <div id="role"  onmouseover="walk()"></div>></div>
         </div>
         <div id="si"></div>
+        <div id="sid"></div>
+        <button onclick="setInterval()">go</button>
  </body>
 </html>
