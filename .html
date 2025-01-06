@@ -13,14 +13,15 @@
      }   
         @keyframes role1walk{
           0%{background-position-x:0px ;}
-         100%{background-position-x:-144px ;}
+         100%{background-position-x:-216px ;}
         }
         #role{
             background-image:url("sprite1.png");
-            width: 48px;height: 72px;
+            background-size: 864px;
+            width: 72px;height: 108px;
             animation: role1walk 1s steps(3) infinite;
-            background-position-y:-144px ;
-            position:absolute;top: 800px;
+            background-position-y: -216px;
+            position:absolute;top: 780px;
            
         }
         #si{
@@ -52,20 +53,29 @@
         clearInterval(1);
        t1=0;
      }
-     function walk(){
-        dir={"px":72}
-        get("role").style.left=pos.x+"px";
-     }
-    
+     
+    function hit(){
+
+    }
+    function right(){
+        get("role").style.left=pos.x+20
+
+
+    }
+    function left(){
+        get("role").style.left=pos.x+-20
+
+}
     
     </script>
 </head>
 <body>
         <div id="worldmap">
-           <div id="role"  onmouseover="walk()"></div>></div>
+           <div id="role"></div>></div>
         </div>
         <div id="si"></div>
         <div id="sid"></div>
-        <button onclick="setInterval()">go</button>
+        <button onclick="left()">left</button>
+        <button onclick="right()">right</button>
  </body>
 </html>
