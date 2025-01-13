@@ -13,69 +13,70 @@
      }   
         @keyframes role1walk{
           0%{background-position-x:0px ;}
-         100%{background-position-x:-216px ;}
+         100%{background-position-x:-144px ;}
         }
         #role{
-            background-image:url("sprite1.png");
-            background-size: 864px;
-            width: 72px;height: 108px;
-            animation: role1walk 1s steps(3) infinite;
-            background-position-y: -216px;
-            position:absolute;top: 780px;
-           
-        }
+         background-image:url("sprite1.png");
+         width: 48px;
+         height: 72px;
+         position: absolute;
+         animation: rolewalk 1s steps(3) infinite ;
+ }
         #si{
             width: 80px;height: 60px;
             background-image: url("13.png");
-            position:absolute;top: 800px;left: 1532px;
+            position:absolute;top: 800px;left:100px;
             background-size: 100%;
         }
         #sid{
             width: 56px;height: 79px;
             background-image: url("14.png");
-            position:absolute;top: 800px;left: 1132px;
+            position:absolute;top: 800px;left: 432px;
             background-size: 100%;
         }
     </style>
     <script>
-        t1=0
-        
+       var pos={x:0,y:o};
+       var dir={"AarowUp":0,"AarowDown":0,"AarowLeft":0,"AarowRight":0,}
        function get(id){
-        return document.getElementById(id)
+        return document.getElementById(id);
     }
-    function setInterval(){
-        if(t1==0){
-            t1=setInterval(30000);
-            setTimeout(stopInterval,3000);
+    function mykeydown(){
+        event.preventDefault();
+        var bgPY={"Arrowup":"-216px","ArrowDown":"0px","ArrowLert":"-72px","ArrowRight":"-144px",};  
+        get("role").style.backgroundPositionY=bgPY[event.key];
+        dir[event.key]=1;
+    }
+    function mykeyup(){
+        event.preventDefault();
+        dir[event.key]=0;
+    }
+    function walk(){
+        if(dir["Arrowup"]==1){
+            pos.y--;
+        } else if(dir["ArrowDown"]==1){
+            pos.y++;
+        }else if(dir["ArrowLeft"]==1){
+            pos.x--;
+        }else if(dir["ArrowLight"]==1){
+            pos.x++;
         }
-     }
-     function stopInterval(){
-        clearInterval(1);
-       t1=0;
-     }
-     
-    function hit(){
-
+        get("role").style.left=pos.x+"px";
+        get("role").style.top=pos.y+"px";
     }
-    function right(){
-        get("role").style.left=pos.x+20
-
-
+    function gameInit(){
+        pos={x:1532,y:0};
+        dir={"Arrowup":"-216px","ArrowDown":"0px","ArrowLert":"-72px","ArrowRight":"-144px",}
+        setInterval(walk,10);
     }
-    function left(){
-        get("role").style.left=pos.x+-20
-
-}
-    
     </script>
 </head>
-<body>
+<body onload="gameInit();"onkeydown="mykeydown();" onkeyup="mykeyup()">
         <div id="worldmap">
            <div id="role"></div>></div>
         </div>
         <div id="si"></div>
         <div id="sid"></div>
-        <button onclick="left()">left</button>
-        <button onclick="right()">right</button>
+        
  </body>
 </html>
